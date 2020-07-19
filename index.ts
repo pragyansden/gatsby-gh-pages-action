@@ -54,7 +54,8 @@ async function run(): Promise<void> {
     }
 
     const deployRepo = core.getInput('deploy-repo')
-    const repo = `${github.context.repo.owner}/${deployRepo || github.context.repo.repo}`
+    const repoOwner = core.getInput('repo-owner')
+    const repo = `${repoOwner || github.context.repo.owner}/${deployRepo || github.context.repo.repo}`
     const repoURL = `https://${accessToken}@github.com/${repo}.git`
     console.log('Ready to deploy your new shiny site!')
     console.log(`Deploying to repo: ${repo} and branch: ${deployBranch}`)
